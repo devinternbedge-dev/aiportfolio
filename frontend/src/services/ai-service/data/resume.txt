@@ -1,0 +1,58 @@
+Kartik Phopase
++91 8999101121 | phopasekartik16
+PROFESSIONAL SUMMARY
+Senior Data Engineer with 3.5 years years of experience in designing, developing, and optimizing large-scale data engineering solutions across enterprise environments. Proven expertise in building scalable data pipelines, implementing Change Data Capture (CDC) frameworks, and enabling real-time and batch data processing across distributed systems.
+Strong hands-on experience with Google Cloud Platform (Dataflow, Pub/Sub, Cloud SQL) and modern data architecture patterns, including cloud migration and database replatforming initiatives. Skilled in working with PostgreSQL, SQL Server, Oracle, and other relational databases, with a strong focus on performance tuning, data modeling, and ensuring data integrity.
+Experienced in developing robust data workflows using Python, SQL, and Java, along with implementing CI/CD pipelines using GitLab and following modern DevOps practices for scalable and reliable data deployments. Demonstrated ability in managing CDC pipelines using Qlik Replicate, ensuring high availability, low-latency data replication, and consistency across systems.
+Proficient in delivering end-to-end ETL/ELT solutions, supporting both batch and streaming data use cases, and collaborating effectively with cross-functional teams including infrastructure, analytics, and product engineering. Adept at working in Agile environments, participating in architecture discussions, and driving continuous improvements in data platform reliability and efficiency.
+
+TECHNICAL SKILLS
+Programming Languages: Python, SQL, Java
+Cloud Platforms: Google Cloud Platform (GCP) – Dataflow, Pub/Sub, Cloud SQL
+Data Engineering: ETL/ELT Pipeline Development, Data Modeling, Data Integration, Batch & Streaming Processing
+CDC (Change Data Capture): Qlik Replicate, Real-time Data Replication, Low-latency Data Pipelines
+Databases: PostgreSQL, SQL Server, Oracle
+Big Data & Data Processing: Distributed Data Processing, Event-driven Architectures, Streaming Data Pipelines
+Data Migration & Replatforming: GCP 2.0 Cloud Migration, Database Replatforming, Legacy System Modernization
+DevOps & CI/CD: GitLab CI/CD, Version Control, Automated Deployment Pipelines
+Tools & Frameworks: Git, GitLab, Dataflow SDKs, Pub/Sub Messaging Systems
+Operating Practices: Agile Methodology, Scrum, Production Support, Incident Troubleshooting
+Data Quality & Governance: Data Validation, Data Reconciliation, Data Consistency Checks
+Monitoring & Reliability: Pipeline Monitoring, Logging, Observability, Performance Optimization
+
+PROFESSIONAL EXPERIENCE
+Senior Data Engineer| Meta, USA 								         Jan 2025 – Present
+•	Worked as part of the Data Services team supporting enterprise-scale data platforms, focusing on Change Data Capture (CDC) pipelines and internal data products.
+•	Designed and implemented scalable CDC solutions to enable real-time and near real-time data replication across heterogeneous databases.
+•	Played a key role in GCP 2.0 migration initiatives, supporting modernization and replatforming of legacy data systems to cloud-native architecture.
+•	Developed and optimized data pipelines using Google Cloud Platform (GCP) services including:
+•	Dataflow for batch and streaming ETL processing
+•	Pub/Sub for event-driven messaging and ingestion
+•	Cloud SQL for managed relational database workloads
+•	Managed and supported database replatforming efforts, primarily working with PostgreSQL and SQL Server environments.
+•	Hands-on experience with CDC pipeline management using Qlik Replicate, ensuring high availability, low-latency replication, and data consistency across systems.
+•	Built and maintained scalable data engineering workflows using Python, SQL, and Java, supporting both batch and streaming data use cases.
+•	Implemented and maintained CI/CD pipelines using GitLab, ensuring automated testing, deployment, and version control for data engineering workloads.
+•	Collaborated closely with cross-functional teams including infrastructure, analytics, and product engineering to deliver robust and scalable data solutions.
+•	Followed modern DevOps practices, ensuring observability, monitoring, and reliability of data pipelines in production environments.
+•	Acted as a self-starter contributing to architecture discussions, design reviews, and continuous improvement of data engineering standards.
+
+Data Engineer| Infosys, India 								                       Jun 2021 – Jul 2023
+•	Worked as a Data Engineer supporting enterprise data warehousing and analytics solutions across large-scale client environments.
+•	Designed, developed, and maintained ETL/ELT pipelines for ingesting and transforming structured and semi-structured data from multiple source systems.
+•	Built and optimized SQL-based data processing workflows for high-volume transactional and reporting systems.
+•	Developed data integration solutions using Python and SQL, ensuring efficient data movement across staging, warehouse, and reporting layers.
+•	Worked extensively with relational databases (SQL Server, Oracle, PostgreSQL depending on project needs) for data modeling, querying, and performance tuning.
+•	Created and maintained data pipelines in batch processing environments, ensuring data accuracy, completeness, and consistency.
+•	Implemented data validation and reconciliation logic to ensure high data quality across downstream analytics systems.
+•	Collaborated with cross-functional teams including business analysts, backend engineers, and QA teams to deliver reliable data solutions.
+•	Participated in requirement analysis, technical design discussions, and production deployment activities.
+•	Supported production systems by troubleshooting data issues, resolving pipeline failures, and ensuring SLA adherence.
+•	Followed Agile methodologies for iterative development and participated in sprint planning, code reviews, and retrospectives.
+•	Contributed to automation of repetitive data workflows, improving operational efficiency and reducing manual intervention.
+
+EDUCATION:
+George Mason University, VA, USA| Master of Science – Data Analytics Engineering
+
+
+

@@ -1,0 +1,21 @@
+# Python
+venv/
+__pycache__/
+*.pyc
+
+# AI Service
+frontend/src/services/ai-service/venv/
+frontend/src/services/ai-service/vectorstore/
+
+# Next.js
+frontend/node_modules/
+frontend/.next/
+
+# Environment
+.env
+
+# IDE
+.vscode/
+
+# Logs
+*.log
