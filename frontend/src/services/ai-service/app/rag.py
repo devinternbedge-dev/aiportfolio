@@ -3,26 +3,34 @@ from langchain_community.embeddings import HuggingFaceEmbeddings
 
 import ollama
 import os
+import time
 
-# =========================
+# ==========================================
 # Paths
-# =========================
+# ==========================================
 
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BASE_DIR = os.path.dirname(
+    os.path.dirname(
+        os.path.abspath(__file__)
+    )
+)
 
-VECTORSTORE_PATH = os.path.join(BASE_DIR, "vectorstore")
+VECTORSTORE_PATH = os.path.join(
+    BASE_DIR,
+    "vectorstore"
+)
 
-# =========================
+# ==========================================
 # Embeddings
-# =========================
+# ==========================================
 
 embeddings = HuggingFaceEmbeddings(
     model_name="sentence-transformers/all-MiniLM-L6-v2"
 )
 
-# =========================
-# Load Vector DB
-# =========================
+# ==========================================
+# Load Vector Store
+# ==========================================
 
 vectorstore = FAISS.load_local(
     VECTORSTORE_PATH,
@@ -30,55 +38,126 @@ vectorstore = FAISS.load_local(
     allow_dangerous_deserialization=True
 )
 
+# ==========================================
+# Retriever
+# ==========================================
+
 retriever = vectorstore.as_retriever(
-    search_kwargs={"k": 4}
+    search_type="mmr",
+    search_kwargs={
+        "k": 4,
+        "fetch_k": 10
+    }
 )
 
-# =========================
-# Conversation Memory
-# =========================
+# ==========================================
+# Memory
+# ==========================================
 
 chat_history = []
 
-MAX_HISTORY = 10
+MAX_HISTORY = 5
 
-# =========================
+# ==========================================
 # Main Function
-# =========================
+# ==========================================
 
 def ask_ai(question):
+
+    start_time = time.time()
+
+    global chat_history
 
     if not question:
         return "Please ask a question."
 
+    # ======================================
+    # Small Talk
+    # ======================================
 
+    small_talk = [
+        "hi",
+        "hello",
+        "hey",
+        "good morning",
+        "good evening"
+    ]
 
-    global chat_history
+    if question.lower().strip() in small_talk:
+        return "Hello! How can I help you today?"
 
-    docs = retriever.invoke(question)
+    # ======================================
+    # Retrieval Timing
+    # ======================================
 
-    context = "\n".join(
-        [doc.page_content for doc in docs]
+    retrieval_start = time.time()
+
+    if any(
+        word in question.lower()
+        for word in [
+            "resume",
+            "cv",
+            "profile",
+            "experience",
+            "skills",
+            "education"
+        ]
+    ):
+
+        docs = [
+            doc
+            for doc in vectorstore.similarity_search(
+                "Kartik resume skills experience work history education",
+                k=2
+            )
+        ][:2]
+
+    else:
+
+        docs = retriever.invoke(question)
+
+    print(
+        f"\nRETRIEVAL TIME: {time.time() - retrieval_start:.2f} sec"
     )
+
+    print(
+        f"Retrieved {len(docs)} documents"
+    )
+
+    # ======================================
+    # Context
+    # ======================================
+
+    context = "\n\n".join(
+        [
+            doc.page_content[:150]
+            for doc in docs
+        ]
+    )
+
+    # ======================================
+    # History
+    # ======================================
 
     history_text = "\n".join(
         [
             f"{msg['role']}: {msg['content']}"
-            for msg in chat_history
+            for msg in chat_history[-10:]
         ]
     )
+
+    # ======================================
+    # Prompt
+    # ======================================
 
     prompt = f"""
 You are Kartik AI Assistant.
 
-Answer ONLY from the provided context.
+Answer ONLY using the provided context.
 
-Use previous conversation when needed.
+Keep answers short.
 
-If answer is not found in context,
-say:
-
-"I could not find that information."
+Maximum 8 lines.
 
 Conversation History:
 {history_text}
@@ -88,10 +167,23 @@ Context:
 
 Question:
 {question}
+
+Answer:
 """
 
+    # ======================================
+    # LLM Timing
+    # ======================================
+
+    llm_start = time.time()
+
     response = ollama.chat(
-        model="mistral",
+    model="phi3:mini",
+    options={
+        "num_predict": 80,
+        "temperature": 0.1,
+        "num_ctx": 1024
+    },
         messages=[
             {
                 "role": "user",
@@ -100,7 +192,15 @@ Question:
         ]
     )
 
+    print(
+        f"LLM TIME: {time.time() - llm_start:.2f} sec"
+    )
+
     answer = response["message"]["content"]
+
+    # ======================================
+    # Save Memory
+    # ======================================
 
     chat_history.append(
         {
@@ -117,6 +217,15 @@ Question:
     )
 
     if len(chat_history) > MAX_HISTORY * 2:
-        chat_history = chat_history[-MAX_HISTORY * 2:]
+
+        chat_history = chat_history[
+            -MAX_HISTORY * 2:
+        ]
+
+    end_time = time.time()
+
+    print(
+        f"\nTOTAL RESPONSE TIME: {end_time - start_time:.2f} seconds\n"
+    )
 
     return answer
